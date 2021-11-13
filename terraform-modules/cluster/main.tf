@@ -1,13 +1,9 @@
 resource "google_container_cluster" "primary" {
   name               = "${var.name}"
   description        = "${var.description}"
-//  zone               = "${var.zone}"
   initial_node_count = "${var.initial_node_count}"
 
   addons_config {
-//    kubernetes_dashboard {
-  //    disabled = "${var.disable_dashboard}"
-  //  }
 
     http_load_balancing {
       disabled = "${var.disable_autoscaling_addon}"

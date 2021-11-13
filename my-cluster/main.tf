@@ -1,24 +1,23 @@
 # create network to run cluster instances
-module "my_network" {
+module "vpc_network" {
   source = "../terraform-modules/vpc"
   name   = "${var.ntw_name}"
 }
 
-# create cluster
-module "my_cluster" {
+# create Kubernetes cluster
+module "kubernetes_cluster" {
   source             = "../terraform-modules/cluster"
   name               = "${var.name}"
   description        = "${var.description}"
   zone               = "${var.zone}"
   initial_node_count = "${var.initial_node_count}"
-  network            = "${module.my_network.name}"
+  network            = "${module.vpc_network.name}"
 }
 
-# create gitlab node pool and attach it to my-cluster
-module "gitlab_np" {
-  source       = "../terraform-modules/node-pool"
-  name         = "gitlab-pool"
-  zone         = "${var.zone}"
-  cluster_name = "${module.my_cluster.name}"
-  node_count   = 1
+# deploy application
+module "app_deploy" {
+  source 	    = "../terraform-modules/deploy"
+  appname	    = "${var.appname}"
+  repository        = "${var.repository}"
+  chart  	    = "${var.chart}"
 }

@@ -1,0 +1,650 @@
+{
+  "version": 4,
+  "terraform_version": "1.0.10",
+  "serial": 60,
+  "lineage": "26f0e945-bfc6-7453-a107-ad3fcfdef375",
+  "outputs": {
+    "gitlab_static_ip": {
+      "value": "34.140.59.205",
+      "type": "string"
+    },
+    "kubconfig": {
+      "value": " ... \nRun command to configure access via kubectl:\n$ gcloud container clusters get-credentials my-cluster2 --zone europe-west1-b --project dxxr-331522",
+      "type": "string"
+    },
+    "thiagocloud_static_ip": {
+      "value": "34.149.161.140",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "google_compute_address",
+      "name": "gitlab_static_ip",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address": "34.140.59.205",
+            "address_type": "EXTERNAL",
+            "creation_timestamp": "2021-11-12T00:35:03.999-08:00",
+            "description": "",
+            "id": "projects/dxxr-331522/regions/europe-west1/addresses/gitlab-static-ip",
+            "name": "gitlab-static-ip",
+            "network": "",
+            "network_tier": "PREMIUM",
+            "prefix_length": 0,
+            "project": "dxxr-331522",
+            "purpose": "",
+            "region": "europe-west1",
+            "self_link": "https://www.googleapis.com/compute/v1/projects/dxxr-331522/regions/europe-west1/addresses/gitlab-static-ip",
+            "subnetwork": "",
+            "timeouts": null,
+            "users": []
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_compute_global_address",
+      "name": "thiagocloud_static_ip",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address": "34.149.161.140",
+            "address_type": "EXTERNAL",
+            "creation_timestamp": "2021-11-12T14:03:04.756-08:00",
+            "description": "",
+            "id": "projects/dxxr-331522/global/addresses/thiagocloud-static-ip",
+            "ip_version": "",
+            "name": "thiagocloud-static-ip",
+            "network": "",
+            "prefix_length": 0,
+            "project": "dxxr-331522",
+            "purpose": "",
+            "self_link": "https://www.googleapis.com/compute/v1/projects/dxxr-331522/global/addresses/thiagocloud-static-ip",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_dns_managed_zone",
+      "name": "primary",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "description": "DNS zone for the Thiago Cloud",
+            "dns_name": "cloud.thiagofmleite.com.",
+            "dnssec_config": [],
+            "force_destroy": false,
+            "forwarding_config": [],
+            "id": "projects/dxxr-331522/managedZones/thiagocloud-zone",
+            "labels": {},
+            "name": "thiagocloud-zone",
+            "name_servers": [
+              "ns-cloud-c1.googledomains.com.",
+              "ns-cloud-c2.googledomains.com.",
+              "ns-cloud-c3.googledomains.com.",
+              "ns-cloud-c4.googledomains.com."
+            ],
+            "peering_config": [],
+            "private_visibility_config": [],
+            "project": "dxxr-331522",
+            "timeouts": null,
+            "visibility": "public"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_dns_record_set",
+      "name": "a_thiagocloud",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/dxxr-331522/managedZones/thiagocloud-zone/rrsets/cloud.thiagofmleite.com./A",
+            "managed_zone": "thiagocloud-zone",
+            "name": "cloud.thiagofmleite.com.",
+            "project": "dxxr-331522",
+            "rrdatas": [
+              "34.149.161.140"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "google_compute_global_address.thiagocloud_static_ip",
+            "google_dns_managed_zone.primary"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_dns_record_set",
+      "name": "cname_thiagocloud",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/dxxr-331522/managedZones/thiagocloud-zone/rrsets/www.cloud.thiagofmleite.com./CNAME",
+            "managed_zone": "thiagocloud-zone",
+            "name": "www.cloud.thiagofmleite.com.",
+            "project": "dxxr-331522",
+            "rrdatas": [
+              "cloud.thiagofmleite.com."
+            ],
+            "ttl": 300,
+            "type": "CNAME"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "google_dns_managed_zone.primary"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_dns_record_set",
+      "name": "gitlab",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/dxxr-331522/managedZones/thiagocloud-zone/rrsets/*.ci.cloud.thiagofmleite.com./A",
+            "managed_zone": "thiagocloud-zone",
+            "name": "*.ci.cloud.thiagofmleite.com.",
+            "project": "dxxr-331522",
+            "rrdatas": [
+              "34.140.59.205"
+            ],
+            "ttl": 300,
+            "type": "A"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "google_compute_address.gitlab_static_ip",
+            "google_dns_managed_zone.primary"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.fw_ssh",
+      "mode": "managed",
+      "type": "google_compute_firewall",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "allow": [
+              {
+                "ports": [
+                  "22"
+                ],
+                "protocol": "tcp"
+              }
+            ],
+            "creation_timestamp": "2021-11-12T00:21:40.355-08:00",
+            "deny": [],
+            "description": "Allow SSH for everyone",
+            "destination_ranges": [],
+            "direction": "INGRESS",
+            "disabled": false,
+            "enable_logging": null,
+            "id": "projects/dxxr-331522/global/firewalls/allow-ssh",
+            "log_config": [],
+            "name": "allow-ssh",
+            "network": "https://www.googleapis.com/compute/v1/projects/dxxr-331522/global/networks/my-cluster-network2",
+            "priority": 1000,
+            "project": "dxxr-331522",
+            "self_link": "https://www.googleapis.com/compute/v1/projects/dxxr-331522/global/firewalls/allow-ssh",
+            "source_ranges": [
+              "0.0.0.0/0"
+            ],
+            "source_service_accounts": [],
+            "source_tags": [],
+            "target_service_accounts": [],
+            "target_tags": [],
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "module.my_network.google_compute_network.ntw"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.gitlab_np",
+      "mode": "managed",
+      "type": "google_container_node_pool",
+      "name": "np",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "autoscaling": [],
+            "cluster": "my-cluster2",
+            "id": "projects/dxxr-331522/locations/europe-west1-b/clusters/my-cluster2/nodePools/gitlab-pool",
+            "initial_node_count": 1,
+            "instance_group_urls": [
+              "https://www.googleapis.com/compute/v1/projects/dxxr-331522/zones/europe-west1-b/instanceGroupManagers/gke-my-cluster2-gitlab-pool-34235927-grp"
+            ],
+            "location": "europe-west1-b",
+            "managed_instance_group_urls": [
+              "https://www.googleapis.com/compute/v1/projects/dxxr-331522/zones/europe-west1-b/instanceGroups/gke-my-cluster2-gitlab-pool-34235927-grp"
+            ],
+            "management": [
+              {
+                "auto_repair": true,
+                "auto_upgrade": true
+              }
+            ],
+            "max_pods_per_node": null,
+            "name": "gitlab-pool",
+            "name_prefix": "",
+            "node_config": [
+              {
+                "disk_size_gb": 40,
+                "disk_type": "pd-standard",
+                "guest_accelerator": [],
+                "image_type": "COS",
+                "labels": {},
+                "local_ssd_count": 0,
+                "machine_type": "n1-standard-1",
+                "metadata": {
+                  "disable-legacy-endpoints": "true"
+                },
+                "min_cpu_platform": "",
+                "oauth_scopes": [
+                  "https://www.googleapis.com/auth/logging.write",
+                  "https://www.googleapis.com/auth/monitoring"
+                ],
+                "preemptible": false,
+                "service_account": "default",
+                "shielded_instance_config": [
+                  {
+                    "enable_integrity_monitoring": true,
+                    "enable_secure_boot": false
+                  }
+                ],
+                "tags": [],
+                "taint": [],
+                "workload_metadata_config": []
+              }
+            ],
+            "node_count": 1,
+            "node_locations": [
+              "europe-west1-b"
+            ],
+            "operation": null,
+            "project": "dxxr-331522",
+            "timeouts": null,
+            "upgrade_settings": [
+              {
+                "max_surge": 1,
+                "max_unavailable": 0
+              }
+            ],
+            "version": "1.20.10-gke.1600"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInVwZGF0ZSI6MTgwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9"
+        }
+      ]
+    },
+    {
+      "module": "module.kubernetes_cluster",
+      "mode": "managed",
+      "type": "google_container_cluster",
+      "name": "primary",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "addons_config": [
+              {
+                "cloudrun_config": [],
+                "horizontal_pod_autoscaling": [],
+                "http_load_balancing": [
+                  {
+                    "disabled": false
+                  }
+                ],
+                "network_policy_config": [
+                  {
+                    "disabled": true
+                  }
+                ]
+              }
+            ],
+            "authenticator_groups_config": [],
+            "cluster_autoscaling": [
+              {
+                "auto_provisioning_defaults": [],
+                "enabled": false,
+                "resource_limits": []
+              }
+            ],
+            "cluster_ipv4_cidr": "10.76.0.0/14",
+            "database_encryption": [
+              {
+                "key_name": "",
+                "state": "DECRYPTED"
+              }
+            ],
+            "datapath_provider": "",
+            "default_max_pods_per_node": null,
+            "default_snat_status": [
+              {
+                "disabled": false
+              }
+            ],
+            "description": "Test cluster to showcase CI/CD with k8s, Gitlab CI, and Helm",
+            "enable_autopilot": false,
+            "enable_binary_authorization": false,
+            "enable_intranode_visibility": false,
+            "enable_kubernetes_alpha": false,
+            "enable_legacy_abac": false,
+            "enable_shielded_nodes": true,
+            "enable_tpu": false,
+            "endpoint": "35.205.62.152",
+            "id": "projects/dxxr-331522/locations/europe-west1-b/clusters/my-cluster2",
+            "initial_node_count": 4,
+            "ip_allocation_policy": [],
+            "label_fingerprint": "a9dc16a7",
+            "location": "europe-west1-b",
+            "logging_config": [
+              {
+                "enable_components": [
+                  "SYSTEM_COMPONENTS",
+                  "WORKLOADS"
+                ]
+              }
+            ],
+            "logging_service": "logging.googleapis.com/kubernetes",
+            "maintenance_policy": [],
+            "master_auth": [
+              {
+                "client_certificate": "",
+                "client_certificate_config": [
+                  {
+                    "issue_client_certificate": false
+                  }
+                ],
+                "client_key": "",
+                "cluster_ca_certificate": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUVMVENDQXBXZ0F3SUJBZ0lSQUpaTy9LUjJZT09IWFBuQmRTUTU3ODh3RFFZSktvWklodmNOQVFFTEJRQXcKTHpFdE1Dc0dBMVVFQXhNa1pqVXpaall3WVRjdFpXTmpOaTAwTkdNMUxXRXdZakl0T0Raa1l6UmlPR1JoWXpCaQpNQ0FYRFRJeE1URXhNekEzTkRFeU1sb1lEekl3TlRFeE1UQTJNRGcwTVRJeVdqQXZNUzB3S3dZRFZRUURFeVJtCk5UTm1OakJoTnkxbFkyTTJMVFEwWXpVdFlUQmlNaTA0Tm1Sak5HSTRaR0ZqTUdJd2dnR2lNQTBHQ1NxR1NJYjMKRFFFQkFRVUFBNElCandBd2dnR0tBb0lCZ1FDN25TU0pWMjgrSXFrbFgvNUFyMXZDUkVSbUhzalVyS05JaXlBYwpKM2Q2dUR2RytEK1dEMGlWOW5NbVBjblhlWGNyc0U4UG44bFlGSmVUMUZTR2EwdWxCUGJGSXVUR0IrVEZGR0o2Cjd5WU44SHcyU2dNaXJtb2VyRmFRaUEvL1ByRStra0YyNDQwbUNlcG5YN3J4emdPdnRvUnVXQXBmYnpHY2VmcE0KTDRPOVlsU2xQdnpjRDNoNGhMdU5hRFNxN3plNWl4Q0hNUTE2QUJyK1VVQ3hwSmhDMTRWWlBacldyNmwxbXFvVQpZQXNVQWRjTFUrbE5SZlptQ3NNNWF1amV4U0tKdm5mUzI5emtmMHIyZVk3YklIWEpXaVZZZkxNanNHVHllbzUvCkIyQThxb1RUWDVBem93TFVndEtYK2graVYySUd0WlJWMC9oZkllU0tWSzgzcm1CNmdmczJsVUVzQjI1ZW96dHIKclJmUjl5VnhnTE05Y000aHlyY2E2V1dyQm9hdkVKa29IS1g0MW5ldXJINHdPK1ByUDY4amY3NHM1WllhMkp4bQpFTW85RzMzbUdnTkhrMFl0bGlYVUp4SFNGQWVERG5wU1luK1lXdEd3dlJxTll6WEwxR0UvVm5kbTZzbGR3WlJuCnM1ZXhZeUdNNVNvVHZDckRHeXBmZXQrY1J0a0NBd0VBQWFOQ01FQXdEZ1lEVlIwUEFRSC9CQVFEQWdJRU1BOEcKQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUVGUGpEajA5aDl0U3pRaXRjTWt0dTRiVWhubFQ0TUEwRwpDU3FHU0liM0RRRUJDd1VBQTRJQmdRQ0Y3dzlXNDdkOURoTkE1MWIwTFVMb1NscmV6Q2hUbXRzUEhIYVFVdDUvClNrUUNDMHZ2TmtnYzdFZFBQeVZuNFJaVXNHQkVVK3pOL05vLzZMR2NFRDhkaEFTbStWU1Vhb1phWWJNRDZoT08KSDlKOTNYbXpUZm03L3BkK1FjZk40N1RhdVdXaGovOE04bFE5ekQrRDQ3Z2dEOElNMlMzSXBhVStmVVJJVjR5dApiK3Z5VjdXL0hhdUlaYXhHMHZuUFkvckNSZVdxMXE2T2pkcnB2cXlrRXhNMlpxby81UlBvajlCaS9rSzIrUklNCnB4VTdRVHVNMC9ySktnaU9odWYrL1BZZTAxdXRBVlRpTTNmZlA5K292VmI1Vi9abXZaOU5RNDkvQzJoN0sxTjIKOWg3RkNlWFBVK0FOMUhDZUZqWDB1Mjd5Q2xSNGZBRnAveHdEbXJIbUh4Uml0U1lRU0doOElGTHUrNkZzTWVnZwo0TThCWFhhVTlRa29yMXJrZ2s4MWZZN01ZZzd0QnJRNG9zZzlVeE5zRExENDlLUnptSEdGVGw5ZGFQeGRRVXpCCm1Od1RUUXUvZUVZZm5MQXExaVFQMGhqTFBXd0poQTB3ZVZ5V1piWHhpY1Fld3cyNjliV1RhcjJkVWQzTmsrclcKMm1XWlR4ZUd3L2k1bVkyMTBlYnRoZGs9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K"
+              }
+            ],
+            "master_authorized_networks_config": [],
+            "master_version": "1.20.10-gke.1600",
+            "min_master_version": null,
+            "monitoring_config": [
+              {
+                "enable_components": [
+                  "SYSTEM_COMPONENTS"
+                ]
+              }
+            ],
+            "monitoring_service": "monitoring.googleapis.com/kubernetes",
+            "name": "my-cluster2",
+            "network": "projects/dxxr-331522/global/networks/my-cluster-network2",
+            "network_policy": [
+              {
+                "enabled": false,
+                "provider": "PROVIDER_UNSPECIFIED"
+              }
+            ],
+            "networking_mode": "ROUTES",
+            "node_config": [
+              {
+                "disk_size_gb": 10,
+                "disk_type": "pd-standard",
+                "guest_accelerator": [],
+                "image_type": "COS",
+                "labels": {},
+                "local_ssd_count": 0,
+                "machine_type": "n1-standard-1",
+                "metadata": {
+                  "disable-legacy-endpoints": "true"
+                },
+                "min_cpu_platform": "",
+                "oauth_scopes": [
+                  "https://www.googleapis.com/auth/compute",
+                  "https://www.googleapis.com/auth/devstorage.read_only",
+                  "https://www.googleapis.com/auth/logging.write",
+                  "https://www.googleapis.com/auth/monitoring"
+                ],
+                "preemptible": false,
+                "service_account": "default",
+                "shielded_instance_config": [
+                  {
+                    "enable_integrity_monitoring": true,
+                    "enable_secure_boot": false
+                  }
+                ],
+                "tags": [
+                  "my-cluster2-cluster",
+                  "nodes"
+                ],
+                "taint": [],
+                "workload_metadata_config": []
+              }
+            ],
+            "node_locations": [],
+            "node_pool": [
+              {
+                "autoscaling": [],
+                "initial_node_count": 4,
+                "instance_group_urls": [
+                  "https://www.googleapis.com/compute/v1/projects/dxxr-331522/zones/europe-west1-b/instanceGroupManagers/gke-my-cluster2-default-pool-9c6daf51-grp"
+                ],
+                "managed_instance_group_urls": [
+                  "https://www.googleapis.com/compute/v1/projects/dxxr-331522/zones/europe-west1-b/instanceGroups/gke-my-cluster2-default-pool-9c6daf51-grp"
+                ],
+                "management": [
+                  {
+                    "auto_repair": true,
+                    "auto_upgrade": true
+                  }
+                ],
+                "max_pods_per_node": 0,
+                "name": "default-pool",
+                "name_prefix": "",
+                "node_config": [
+                  {
+                    "disk_size_gb": 10,
+                    "disk_type": "pd-standard",
+                    "guest_accelerator": [],
+                    "image_type": "COS",
+                    "labels": {},
+                    "local_ssd_count": 0,
+                    "machine_type": "n1-standard-1",
+                    "metadata": {
+                      "disable-legacy-endpoints": "true"
+                    },
+                    "min_cpu_platform": "",
+                    "oauth_scopes": [
+                      "https://www.googleapis.com/auth/compute",
+                      "https://www.googleapis.com/auth/devstorage.read_only",
+                      "https://www.googleapis.com/auth/logging.write",
+                      "https://www.googleapis.com/auth/monitoring"
+                    ],
+                    "preemptible": false,
+                    "service_account": "default",
+                    "shielded_instance_config": [
+                      {
+                        "enable_integrity_monitoring": true,
+                        "enable_secure_boot": false
+                      }
+                    ],
+                    "tags": [
+                      "my-cluster2-cluster",
+                      "nodes"
+                    ],
+                    "taint": [],
+                    "workload_metadata_config": []
+                  }
+                ],
+                "node_count": 4,
+                "node_locations": [
+                  "europe-west1-b"
+                ],
+                "upgrade_settings": [
+                  {
+                    "max_surge": 1,
+                    "max_unavailable": 0
+                  }
+                ],
+                "version": "1.20.10-gke.1600"
+              },
+              {
+                "autoscaling": [],
+                "initial_node_count": 1,
+                "instance_group_urls": [
+                  "https://www.googleapis.com/compute/v1/projects/dxxr-331522/zones/europe-west1-b/instanceGroupManagers/gke-my-cluster2-gitlab-pool-34235927-grp"
+                ],
+                "managed_instance_group_urls": [
+                  "https://www.googleapis.com/compute/v1/projects/dxxr-331522/zones/europe-west1-b/instanceGroups/gke-my-cluster2-gitlab-pool-34235927-grp"
+                ],
+                "management": [
+                  {
+                    "auto_repair": true,
+                    "auto_upgrade": true
+                  }
+                ],
+                "max_pods_per_node": 0,
+                "name": "gitlab-pool",
+                "name_prefix": "",
+                "node_config": [
+                  {
+                    "disk_size_gb": 40,
+                    "disk_type": "pd-standard",
+                    "guest_accelerator": [],
+                    "image_type": "COS",
+                    "labels": {},
+                    "local_ssd_count": 0,
+                    "machine_type": "n1-standard-1",
+                    "metadata": {
+                      "disable-legacy-endpoints": "true"
+                    },
+                    "min_cpu_platform": "",
+                    "oauth_scopes": [
+                      "https://www.googleapis.com/auth/logging.write",
+                      "https://www.googleapis.com/auth/monitoring"
+                    ],
+                    "preemptible": false,
+                    "service_account": "default",
+                    "shielded_instance_config": [
+                      {
+                        "enable_integrity_monitoring": true,
+                        "enable_secure_boot": false
+                      }
+                    ],
+                    "tags": [],
+                    "taint": [],
+                    "workload_metadata_config": []
+                  }
+                ],
+                "node_count": 1,
+                "node_locations": [
+                  "europe-west1-b"
+                ],
+                "upgrade_settings": [
+                  {
+                    "max_surge": 1,
+                    "max_unavailable": 0
+                  }
+                ],
+                "version": "1.20.10-gke.1600"
+              }
+            ],
+            "node_version": "1.20.10-gke.1600",
+            "operation": null,
+            "private_cluster_config": [],
+            "private_ipv6_google_access": "",
+            "project": "dxxr-331522",
+            "release_channel": [
+              {
+                "channel": "REGULAR"
+              }
+            ],
+            "remove_default_node_pool": null,
+            "resource_labels": {},
+            "resource_usage_export_config": [],
+            "self_link": "https://container.googleapis.com/v1/projects/dxxr-331522/zones/europe-west1-b/clusters/my-cluster2",
+            "services_ipv4_cidr": "10.79.240.0/20",
+            "subnetwork": "projects/dxxr-331522/regions/europe-west1/subnetworks/my-cluster-network2",
+            "timeouts": null,
+            "tpu_ipv4_cidr_block": "",
+            "vertical_pod_autoscaling": [],
+            "workload_identity_config": []
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAwLCJkZWxldGUiOjI0MDAwMDAwMDAwMDAsInJlYWQiOjI0MDAwMDAwMDAwMDAsInVwZGF0ZSI6MzYwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "module.my_network.google_compute_network.ntw"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.my_network",
+      "mode": "managed",
+      "type": "google_compute_network",
+      "name": "ntw",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "auto_create_subnetworks": true,
+            "delete_default_routes_on_create": false,
+            "description": "K8s cluster network",
+            "gateway_ipv4": "",
+            "id": "projects/dxxr-331522/global/networks/my-cluster-network2",
+            "mtu": 0,
+            "name": "my-cluster-network2",
+            "project": "dxxr-331522",
+            "routing_mode": "REGIONAL",
+            "self_link": "https://www.googleapis.com/compute/v1/projects/dxxr-331522/global/networks/my-cluster-network2",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJ1cGRhdGUiOjI0MDAwMDAwMDAwMH19"
+        }
+      ]
+    }
+  ]
+}

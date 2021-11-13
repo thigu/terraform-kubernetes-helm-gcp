@@ -1,0 +1,33 @@
+resource "helm_release" "myapp" {
+
+  name = "${var.appname}"
+
+  repository = "${var.repository}"
+  chart      = "${var.chart}"
+  namespace  = "default"
+
+  set {
+    name  = "service.type"
+    value = "LoadBalancer"
+  }
+
+  set {
+    name  = "protocolHttp"
+    value = "true"
+  }
+
+  set {
+    name  = "service.externalPort"
+    value = 80
+  }
+
+  set {
+    name  = "replicaCount"
+    value = 2
+  }
+
+  set {
+    name  = "rbac.clusterReadOnlyRole"
+    value = "true"
+  }
+}
