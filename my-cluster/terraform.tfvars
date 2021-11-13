@@ -11,6 +11,6 @@ initial_node_count = 4 # number of nodes in the cluster
 ntw_name = "my-cluster-network" # VPC network name which will be created
 
 appname = "guestbook" # App name to be deployed 
-repository = "https://github.com/thigu/job-test/tree/main/chart-sources"
+repository = "https://raw.githubusercontent.com/thigu/job-test/main/my-cluster/k8s-config/charts/"
 kubeconfig = "~/.kube/config"
 chart = "guestbook"
