@@ -3,9 +3,14 @@ region = "europe-west1"
 
 credentials_file         = "credentials.json"
 
-name = "my-cluster2"
+name = "my-cluster"
 description = "Test cluster to showcase CI/CD with k8s, Gitlab CI, and Helm"
 zone = "europe-west1-b"
 initial_node_count = 4 # number of nodes in the cluster
 
-ntw_name = "my-cluster-network2" # VPC network name which will be created
+ntw_name = "my-cluster-network" # VPC network name which will be created
+
+appname = "guestbook" # App name to be deployed 
+repository = "https://github.com/thigu/job-test/tree/main/chart-sources"
+kubeconfig = "~/.kube/config"
+chart = "guestbook"

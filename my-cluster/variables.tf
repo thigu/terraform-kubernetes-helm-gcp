@@ -34,3 +34,23 @@ variable "initial_node_count" {
 }
 
 variable "credentials_file" { }
+
+## ------------------
+## App Deploy
+## ------------------
+
+variable "appname" {
+  description = "The name of the application to be deployed"
+}
+
+variable "repository" {
+  description = "URL to chart repository to deploy applications"
+}
+
+variable "kubeconfig" {
+  description = "Kubernetes configuration files"
+}
+
+variable "chart" {
+  description = "Name of chart used to helm install"
+}
