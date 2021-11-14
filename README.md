@@ -9,29 +9,40 @@
 
 ## About the app
 
-This repository contains code to deploy an infrastructure using Kubernetes in GCP service. That code was developed to a job test by Thiago Leite. 
+This repository contains code to deploy an infrastructure using Kubernetes and Helm in GCP service. That code was developed by Thiago Leite <tfmleite (at) gmail (dot) com> as a test to a job position.
 
-The project uses Terraform and Helm tools to create a new infrastrcuture using Kubernetes in GCP service and deploy an application (Guestbook) using Redis. 
+The project uses Terraform and Helm tools to create a new infrastructure using Kubernetes in GCP service and deploy an application (Guestbook) using Redis.
 
 ## Quick start
-**Prerequisite command line tools:** Before start you need to check if you have the follow installed tools and they could be used from command line interface (CLI) of your operating system: 
+**Command line tools requirements:** Before start you need to check if you have the follow installed tools and they could be used from command line interface (CLI) of your operating system: 
  * [gcloud](https://cloud.google.com/sdk/gcloud/)
  * [terraform](https://www.terraform.io)
 
-**Prerequisite:** make sure you're authenticated to GCP via gcloud command line tool using either _default application credentials_ or _service account_ with needed access. If you're executing commands to GCP from a remote computer could be necessary to download a JSON credentials file from GCP console.  
+'''bash
+$ which terraform
+$ which gcloud
+'''
 
-Check **terraform.tfvars** file inside `my-cluster` folder to see what variables you need to define before you can use terraform to create a cluster and deploy the application.  
+**Prerequisite:** make sure you're authenticated to GCP via gcloud command line tool using either _default application credentials_ or _service account_ with needed access. You need to download a JSON credentials file from GCP console with authorization access to deploy the new infrastructure into a project. This file need to be inside my-cluster folder from the project code. 
 
-Once the required variables are defined and gcloud already have access to your project, you could the commands below to initialize Terraform tool and start the deployment tasks to a new environment: 
+it is also needed a .kube directory inside user home dir. That directory structure could be also created during Terraform process if you don't have yet. Terraform script is programmed to continue on fail while it try to create it but that directory is neede anyway. If you're running the Terraform script on Google Shell that situation is not a problem and the installation process could continue.
+
+Check **terraform.tfvars** file inside `my-cluster` folder to see what variables you need to define before you can use terraform to create a cluster and deploy the application. By default the file don't exist. You could create it using the follow command:
+
+'''bash
+$ cd my-cluster && cp terraform.tfvars.example terrraform.tfvars
+'''
+
+Once the required variables are defined and gcloud already have access to your project, you could the commands below to initialize Terraform tool and start the deployment task to a new environment: 
+
 ```bash
-$ terraform init
-$ terraform apply
+$ terraform init && terraform apply
 ```
 
-After the Terraform and Helm deploy the application to your new Kubernetes cluster, after some minutes (˜5 min), open your browser and access the followig URL to check Guestbook application using Redis up and running in GCP cloud service:
+After the Terraform and Helm deploy the application to your new Kubernetes cluster, after some minutes (˜5 min), open your browser and access the followig URL to check Guestbook (or other name if you change the default value) application using Redis up and running in GCP cloud service:
 
 ```
-http://www.cloud.thiagofmleite.com
+[http://www.cloud.thiagofmleite.com](http://cloud.thiagofmleite.com)
 ```
 
 ## Repository structure
@@ -90,15 +101,16 @@ http://www.cloud.thiagofmleite.com
 The folder contains Terraform definition to network elements like VPC network. It was placed alone to be create before any other element using Terraform. 
 
 ### cluster-module
-This folder contains all definitions to K8s cluster. 
+This folder contains all definitions to K8s cluster like GCP APIs needed, how to generate configuration files to access using kubectl tool, initializing Kubernetes nodes and so on. It was placed as a module to improve better code orgazanition.
 
 ### deploy-module
-The folder contains all configurations to deploy the Guestbook application (and dependencies) after network and cluster provisioning tasks. The deployment includes a Helm resource responsible to download the helm package (including Redis package) and install it to cluster. The deploy module also creates an ingress to created to allow external access to the application. 
+The folder contains all configurations to deploy the Guestbook application (and dependencies) after network and cluster provisioning tasks. The deployment includes a Helm resource responsible to download the helm package (including Redis package) and install it to cluster. The generated helm package itself is hosted at original Github page by [Thiago Leite](https://github.com/thigu/job-test/tree/main/my-cluster/k8s-config/charts). The deploy module also creates an 'ingress' to created to allow external access to the application.
 
 ## faq
-1. After initialize Terraform and start the "apply" subcommand, the process stops a timeout error. If you have any Internet connectivity problem could happen an error. It is not really a problem. Terraform could continue the creating process where it stoped before. So run again the command below to finish the process:
+1. After initialize Terraform and start the "apply" subcommand, some minutes after the process begin it stops with a timeout error (dial tcp tieout). If you have any Internet connectivity issue during the process that error could happen. It is not really a problem. Terraform can start where it stoped before. So run again the command below to finish the process:
 
-'''
+'''bash
 $ terraform apply
 '''
-2. The create process has finished but the URL http://cloud.thiagofmleite.com returns HTTP 404 error. Considering that process includes ingress service it requires some time to be done. Wait for 5 minutes and try again. 
+
+The create process has finished but the URL [http://cloud.thiagofmleite.com](http://cloud.thiagofmleite.com) returns HTTP 404 error. Considering that process includes 'ingress' service it requires some time to be done. Wait for 5 minutes and try again.

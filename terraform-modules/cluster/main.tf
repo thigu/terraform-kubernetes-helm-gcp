@@ -32,8 +32,11 @@ resource "google_container_cluster" "primary" {
     tags = ["${var.name}-cluster", "nodes"]
   }
 
+  # It is needed always when a cluster is destroyed and created another one. The management IP
+  # changes and you need to request a new config file with new tokens to access the k8s cluster
   provisioner "local-exec" {
-    command = "gcloud container clusters get-credentials ${var.name} --zone ${var.zone} --project ${var.project_id} > /tmp/output_test"
+    command    = "gcloud container clusters get-credentials ${var.name} --zone ${var.zone} --project ${var.project_id}"
+    on_failure = continue
   }
 
 }
