@@ -7,7 +7,7 @@ resource "kubernetes_ingress" "ingress" {
     name = "ingress-${var.appname}"
     namespace = "default"
     annotations = {
-      "kubernetes.io/ingress.global-static-ip-name": "thiagocloud_static_ip"
+      "kubernetes.io/ingress.global-static-ip-name" = "thiagocloud-static-ip"
     }
   }
 
