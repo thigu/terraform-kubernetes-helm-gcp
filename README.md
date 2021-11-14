@@ -5,13 +5,14 @@
    * [network-module](#network-module)
    * [cluster-module](#cluster-module)
    * [deploy-module](#deploy-module)
-* [FAQ](#faq)
+* [FAQ](#faq)i
+* [License](#license)
 
 ## About the app
 
 This repository contains code to deploy an infrastructure using Kubernetes and Helm in GCP service. That code was developed by Thiago Leite <tfmleite (at) gmail (dot) com> as a test to a job position.
 
-The project uses Terraform and Helm tools to create a new infrastructure using Kubernetes in GCP service and deploy an application (Guestbook) using Redis.
+The project uses Terraform and Helm tools to create a new infrastructure using Kubernetes in GCP service and deploy an application (Guestbook) using Redis. The Guestbook package created by author contains PHP Guestbook application published at [here](https://kubernetes.io/docs/tutorials/stateless-application/guestbook/). The package has as dependency Redis package. Redis package is hosted on public repository.  
 
 ## Quick start
 **Command line tools requirements:** Before start you need to check if you have the follow installed tools and they could be used from command line interface (CLI) of your operating system: 
@@ -112,3 +113,7 @@ $ terraform apply
 ```
 
 The create process has finished but the URL [http://cloud.thiagofmleite.com](http://cloud.thiagofmleite.com) returns HTTP 404 error. Considering that process includes 'ingress' service it requires some time to be done. Wait for 5 minutes and try again.
+
+## license
+
+All repository is license under [Apache License 2.0](https://github.com/thigu/job-test/blob/main/LICENSE). 
