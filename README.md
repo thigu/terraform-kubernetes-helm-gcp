@@ -18,12 +18,12 @@ The project uses Terraform and Helm tools to create a new infrastructure using K
  * [gcloud](https://cloud.google.com/sdk/gcloud/)
  * [terraform](https://www.terraform.io)
 
-'''bash
+```bash
 $ which terraform
 $ which gcloud
-'''
+```
 
-**Prerequisite:** make sure you're authenticated to GCP via gcloud command line tool using either _default application credentials_ or _service account_ with needed access. You need to download a JSON credentials file from GCP console with authorization access to deploy the new infrastructure into a project. This file need to be inside my-cluster folder from the project code. 
+**Prerequisite:** make sure you're authenticated to GCP via gcloud command line tool using either _default application credentials_ or _service account_ with needed access. You need to download a JSON credentials file from GCP console with authorization access to deploy the new infrastructure into a project. This file need to be inside `my-cluster` folder from the project code. 
 
 it is also needed a .kube directory inside user home dir. That directory structure could be also created during Terraform process if you don't have yet. Terraform script is programmed to continue on fail while it try to create it but that directory is neede anyway. If you're running the Terraform script on Google Shell that situation is not a problem and the installation process could continue.
 
@@ -109,8 +109,8 @@ The folder contains all configurations to deploy the Guestbook application (and 
 ## faq
 1. After initialize Terraform and start the "apply" subcommand, some minutes after the process begin it stops with a timeout error (dial tcp tieout). If you have any Internet connectivity issue during the process that error could happen. It is not really a problem. Terraform can start where it stoped before. So run again the command below to finish the process:
 
-'''bash
+```bash
 $ terraform apply
-'''
+```
 
 The create process has finished but the URL [http://cloud.thiagofmleite.com](http://cloud.thiagofmleite.com) returns HTTP 404 error. Considering that process includes 'ingress' service it requires some time to be done. Wait for 5 minutes and try again.
