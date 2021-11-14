@@ -12,6 +12,7 @@ module "kubernetes_cluster" {
   zone               = "${var.zone}"
   initial_node_count = "${var.initial_node_count}"
   network            = "${module.vpc_network.name}"
+  project_id	     = "${var.project_id}"
 }
 
 # deploy application
@@ -20,4 +21,7 @@ module "app_deploy" {
   appname	    = "${var.appname}"
   repository        = "${var.repository}"
   chart  	    = "${var.chart}"
+  depends_on	    = [module.kubernetes_cluster,module.vpc_network]
+  static_ip         = "${google_compute_global_address.thiagocloud_static_ip.address}"
+  monitor_static_ip = "${google_compute_global_address.thiagocloud_monitor_static_ip.address}"
 }

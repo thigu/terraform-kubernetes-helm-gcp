@@ -9,3 +9,11 @@ variable "repository" {
 variable "chart" {
   description = "Name of chart to be deployed to k8s cluster"
 }
+
+variable "static_ip" {
+  description = "Static IP designed to external load balancer"
+}
+
+variable "monitor_static_ip" {
+  description = "Static IP designed to Kubernetes dashboard"
+} 

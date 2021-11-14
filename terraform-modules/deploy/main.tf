@@ -5,21 +5,17 @@ resource "helm_release" "myapp" {
   repository = "${var.repository}"
   chart      = "${var.chart}"
   namespace  = "default"
-
-  set {
-    name  = "service.type"
-    value = "LoadBalancer"
-  }
-
+ 
   set {
     name  = "protocolHttp"
     value = "true"
   }
 
   set {
-    name  = "service.externalPort"
-    value = 80
+    name  = "service.port"
+    value = "8080"
   }
+
 
   set {
     name  = "replicaCount"
@@ -31,3 +27,4 @@ resource "helm_release" "myapp" {
     value = "true"
   }
 }
+
