@@ -2,10 +2,10 @@ output "thiagocloud_static_ip" {
   value = "${google_compute_global_address.thiagocloud_static_ip.address}"
 }
 
-output "gitlab_static_ip" {
-  value = "${google_compute_address.gitlab_static_ip.address}"
+output "thiagocloud_monitor_static_ip" {
+  value = "${google_compute_global_address.thiagocloud_monitor_static_ip.address}"
 }
 
-output "kubconfig" {
-  value = " ... \nRun command to configure access via kubectl:\n$ gcloud container clusters get-credentials ${module.kubernetes_cluster.name} --zone ${var.zone} --project ${var.project_id}"
+output "access-app" {
+  value = " ... \nOpen your browser and type cloud.thiagofmleite.com to access the application."
 }

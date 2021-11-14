@@ -12,11 +12,6 @@ resource "google_container_cluster" "primary" {
 
   network = "${var.network}"
 
-  # node pools will be replicated automatically to the additional zones
-  # additional_zones = [
-  #   "europe-west1-c"
-  # ]
-
   # node configuration
   # NOTE: nodes created during the cluster creation become the default node pool
   node_config {
@@ -36,4 +31,9 @@ resource "google_container_cluster" "primary" {
     # Tags can used to identify targets in firewall rules
     tags = ["${var.name}-cluster", "nodes"]
   }
+
+  provisioner "local-exec" {
+    command = "gcloud container clusters get-credentials ${var.name} --zone ${var.zone} --project ${var.project_id} > /tmp/output_test"
+  }
+
 }
