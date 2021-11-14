@@ -41,9 +41,7 @@ $ terraform init && terraform apply
 
 After the Terraform and Helm deploy the application to your new Kubernetes cluster, after some minutes (˜5 min), open your browser and access the followig URL to check Guestbook (or other name if you change the default value) application using Redis up and running in GCP cloud service:
 
-```
 [http://www.cloud.thiagofmleite.com](http://cloud.thiagofmleite.com)
-```
 
 ## Repository structure
 ```bash
