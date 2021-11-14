@@ -5,6 +5,7 @@
    * [network-module](#network-module)
    * [cluster-module](#cluster-module)
    * [deploy-module](#deploy-module)
+* [FAQ](#faq)
 
 ## About the app
 
@@ -13,22 +14,25 @@ This repository contains code to deploy an infrastructure using Kubernetes in GC
 The project uses Terraform and Helm tools to create a new infrastrcuture using Kubernetes in GCP service and deploy an application (Guestbook) using Redis. 
 
 ## Quick start
-**Prerequisite:** make sure you're authenticated to GCP via [gcloud](https://cloud.google.com/sdk/gcloud/) command line tool using either _default application credentials_ or _service account_ with proper access.
+**Prerequisite command line tools:** Before start you need to check if you have the follow installed tools and they could be used from command line interface (CLI) of your operating system: 
+ * [gcloud](https://cloud.google.com/sdk/gcloud/)
+ * [terraform](https://www.terraform.io)
 
-Check **terraform.tfvars** file inside `my-cluster` folder to see what variables you need to define before you can use terraform to create a cluster and deploy the application.
+**Prerequisite:** make sure you're authenticated to GCP via gcloud command line tool using either _default application credentials_ or _service account_ with needed access. If you're executing commands to GCP from a remote computer could be necessary to download a JSON credentials file from GCP console.  
 
-Once the required variables are defined and credentials file, use the commands below to execute all jobs needed to deploy the new environment: 
+Check **terraform.tfvars** file inside `my-cluster` folder to see what variables you need to define before you can use terraform to create a cluster and deploy the application.  
+
+Once the required variables are defined and gcloud already have access to your project, you could the commands below to initialize Terraform tool and start the deployment tasks to a new environment: 
 ```bash
 $ terraform init
 $ terraform apply
 ```
 
-After the Terraform and Helm create an deploy the application, open your browser and access the followig URL:
+After the Terraform and Helm deploy the application to your new Kubernetes cluster, after some minutes (˜5 min), open your browser and access the followig URL to check Guestbook application using Redis up and running in GCP cloud service:
 
 ```
 http://www.cloud.thiagofmleite.com
 ```
-
 
 ## Repository structure
 ```bash
@@ -85,10 +89,16 @@ http://www.cloud.thiagofmleite.com
 ### network-module
 The folder contains Terraform definition to network elements like VPC network. It was placed alone to be create before any other element using Terraform. 
 
-
 ### cluster-module
 This folder contains all definitions to K8s cluster. 
 
 ### deploy-module
 The folder contains all configurations to deploy the Guestbook application (and dependencies) after network and cluster provisioning tasks. The deployment includes a Helm resource responsible to download the helm package (including Redis package) and install it to cluster. The deploy module also creates an ingress to created to allow external access to the application. 
 
+## faq
+1. After initialize Terraform and start the "apply" subcommand, the process stops a timeout error. If you have any Internet connectivity problem could happen an error. It is not really a problem. Terraform could continue the creating process where it stoped before. So run again the command below to finish the process:
+
+'''
+$ terraform apply
+'''
+2. The create process has finished but the URL http://cloud.thiagofmleite.com returns HTTP 404 error. Considering that process includes ingress service it requires some time to be done. Wait for 5 minutes and try again. 
