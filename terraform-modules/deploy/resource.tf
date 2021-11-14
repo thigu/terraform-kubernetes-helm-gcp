@@ -1,5 +1,16 @@
-resource "kubernetes_ingress" "ingress" {
+resource "time_sleep" "wait_30_seconds" {
   depends_on = [helm_release.myapp]
+
+  create_duration = "30s"
+}
+
+# This resource will create (at least) 30 seconds after null_resource.previous
+resource "null_resource" "next" {
+  depends_on = [time_sleep.wait_30_seconds]
+}
+
+resource "kubernetes_ingress" "ingress" {
+  depends_on = [null_resource.next]
   metadata {
     labels = {
       app      = "ingress-nginx"

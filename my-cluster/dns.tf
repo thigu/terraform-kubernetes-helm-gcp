@@ -24,13 +24,3 @@ resource "google_dns_record_set" "a_monitor_thiagocloud" {
   rrdatas = ["${google_compute_global_address.thiagocloud_monitor_static_ip.address}"]
 }
 
-resource "google_dns_record_set" "cname_thiagocloud" {
-  name = "www.${google_dns_managed_zone.primary.dns_name}"
-  type = "CNAME"
-  ttl  = 300
-
-  managed_zone = "${google_dns_managed_zone.primary.name}"
-
-  rrdatas = ["${google_dns_managed_zone.primary.dns_name}"]
-}
-
