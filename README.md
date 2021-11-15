@@ -5,7 +5,7 @@
    * [network-module](#network-module)
    * [cluster-module](#cluster-module)
    * [deploy-module](#deploy-module)
-* [FAQ](#faq)i
+* [FAQ](#faq)
 * [License](#license)
 
 ## About the app
