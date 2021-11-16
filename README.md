@@ -12,7 +12,9 @@
 
 This repository contains code to deploy an infrastructure using Kubernetes and Helm in GCP service. That code was developed by Thiago Leite <tfmleite (at) gmail (dot) com> as a test to a job position.
 
-The project uses Terraform and Helm tools to create a new infrastructure using Kubernetes in GCP service and deploy an application (Guestbook) using Redis. The Guestbook package created by author contains PHP Guestbook application published at [here](https://kubernetes.io/docs/tutorials/stateless-application/guestbook/). The package has as dependency Redis package. Redis package is hosted on public repository.  
+The project uses Terraform and Helm tools to create a new infrastructure using Kubernetes in GCP service and deploy an application (Guestbook) using Redis. The Guestbook package created by author contains PHP Guestbook application published at [here](https://kubernetes.io/docs/tutorials/stateless-application/guestbook/). The package has as dependency Redis package. Redis package is hosted on public repository. 
+
+The Kubernetes Dashboard also is deployed to monitor the environment if no need to access GCP console.  
 
 ## Quick start
 **Command line tools requirements:** Before start you need to check if you have the follow installed tools and they could be used from command line interface (CLI) of your operating system: 
@@ -30,9 +32,9 @@ it is also needed a .kube directory inside user home dir. That directory structu
 
 Check **terraform.tfvars** file inside `my-cluster` folder to see what variables you need to define before you can use terraform to create a cluster and deploy the application. By default the file don't exist. You could create it using the follow command:
 
-'''bash
+```bash
 $ cd my-cluster && cp terraform.tfvars.example terrraform.tfvars
-'''
+```
 
 Once the required variables are defined and gcloud already have access to your project, you could the commands below to initialize Terraform tool and start the deployment task to a new environment: 
 
@@ -42,7 +44,9 @@ $ terraform init && terraform apply
 
 After the Terraform and Helm deploy the application to your new Kubernetes cluster, after some minutes (˜5 min), open your browser and access the followig URL to check Guestbook (or other name if you change the default value) application using Redis up and running in GCP cloud service:
 
-[http://www.cloud.thiagofmleite.com](http://cloud.thiagofmleite.com)
+[http://cloud.thiagofmleite.com](http://cloud.thiagofmleite.com)
+
+If you want to see additional things about the new infrastructure and application you also can access [http://monitor.cloud.thiagofmleite.com](http://monitor.cloud.thiagofmleite.com) to access Kubernetes Dashboard. Considering it is only a test the dashboard doesn't requires credentials to access. 
 
 ## Repository structure
 ```bash
@@ -112,7 +116,9 @@ The folder contains all configurations to deploy the Guestbook application (and 
 $ terraform apply
 ```
 
-The create process has finished but the URL [http://cloud.thiagofmleite.com](http://cloud.thiagofmleite.com) returns HTTP 404 error. Considering that process includes 'ingress' service it requires some time to be done. Wait for 5 minutes and try again.
+2. The create process has finished but the URL [http://cloud.thiagofmleite.com](http://cloud.thiagofmleite.com) returns HTTP 404 error. Considering that process includes 'ingress' service it requires some time to be done. Wait for 5 minutes and try again.
+
+3. Terraform freezes during `apply` procedures. Considering Terraform depends of a lot of other resources (i.e Internet connection, GCP service, etwork latency, chart repositories...) the apply or destroy process could freezes. If it happen you need to use Ctrl+C hotkeys and just try again. 
 
 ## license
 

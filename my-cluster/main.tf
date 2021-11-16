@@ -25,3 +25,4 @@ module "app_deploy" {
   static_ip         = "${google_compute_global_address.thiagocloud_static_ip.address}"
   monitor_static_ip = "${google_compute_global_address.thiagocloud_monitor_static_ip.address}"
 }
+
