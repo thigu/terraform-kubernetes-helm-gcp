@@ -46,6 +46,8 @@ After the Terraform and Helm deploy the application to your new Kubernetes clust
 
 [http://cloud.thiagofmleite.com](http://cloud.thiagofmleite.com)
 
+PS: that access is only possible because the DNS configuration at thiagofmleite.com points to Google Cloud nameservers where we are creating the static IP.
+
 If you want to see additional things about the new infrastructure and application you also can access [http://monitor.cloud.thiagofmleite.com](http://monitor.cloud.thiagofmleite.com) to access Kubernetes Dashboard. Considering it is only a test the dashboard doesn't requires credentials to access. 
 
 ## Repository structure
@@ -122,4 +124,4 @@ $ terraform apply
 
 ## license
 
-All repository is license under [Apache License 2.0](https://github.com/thigu/job-test/blob/main/LICENSE). 
+All repository is license under [Apache License 2.0](https://github.com/thigu/terraform-kubernetes-helm/blob/main/LICENSE). 
