@@ -10,7 +10,7 @@
 
 ## About the app
 
-This repository contains code to deploy an infrastructure using Kubernetes and Helm in GCP service. That code was developed by Thiago Leite <tfmleite (at) gmail (dot) com> as a test to a job position.
+This repository contains code to deploy an infrastructure using Kubernetes and Helm in GCP service. That code was developed by Thiago Leite <tfmleite (at) gmail (dot) com> as a test to a job position. The code was initial based on this project [https://github.com/Artemmkin/terraform-kubernetes](https://github.com/Artemmkin/terraform-kubernetes).
 
 The project uses Terraform and Helm tools to create a new infrastructure using Kubernetes in GCP service and deploy an application (Guestbook) using Redis. The Guestbook package created by author contains PHP Guestbook application published at [here](https://kubernetes.io/docs/tutorials/stateless-application/guestbook/). The package has as dependency Redis package. Redis package is hosted on public repository. 
 
